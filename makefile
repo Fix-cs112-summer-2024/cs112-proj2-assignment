@@ -1,5 +1,5 @@
 # project name (generate executable with this name)
-TARGET   = proj1
+TARGET   = proj2
 
 CPP       = g++ --std=c++11 -c
 # compiling flags here
