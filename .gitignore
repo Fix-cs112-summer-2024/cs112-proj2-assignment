@@ -36,3 +36,5 @@ Thumbs.db
 /.vscode
 /*.dSYM/
 /proj2
+core
+.nfs*
