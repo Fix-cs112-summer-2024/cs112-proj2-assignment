@@ -69,11 +69,50 @@ jobs:
         comparison-method: contains
         timeout: 10
         max-score: 1
+    - name: n is even
+      id: n-is-even
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: n is even
+        setup-command: make proj2
+        command: "./proj2 2"
+        input: ''
+        expected-output: 'Error: invalid number'
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: n is negative
+      id: n-is-negative
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: n is negative
+        setup-command: make proj2
+        command: "./proj2 -2"
+        input: ''
+        expected-output: 'Error: invalid number'
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
+    - name: n greater than 15
+      id: n-greater-than-15
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: n-greater-than-15
+        setup-command: make proj2
+        command: "./proj2 16"
+        input: ''
+        expected-output: 'Error: invalid number'
+        comparison-method: contains
+        timeout: 10
+        max-score: 1
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         N-1_RESULTS: "${{steps.n-1.outputs.result}}"
         N-5_RESULTS: "${{steps.n-5.outputs.result}}"
         N-15_RESULTS: "${{steps.n-15.outputs.result}}"
+        N-IS-EVEN_RESULTS: "${{steps.n-is-even.outputs.result}}"
+        N-IS-NEGATIVE_RESULTS: "${{steps.n-is-negative.outputs.result}}"
+        N-GREATER-THAN-15: "${{steps.n-greater-than-15.outputs.result}}"
       with:
-        runners: n-1,n-5,n-15
+        runners: n-1,n-5,n-15,n-is-even,n-is-negative,n-greater-than-15
